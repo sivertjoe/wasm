@@ -27,13 +27,13 @@ impl UpdateElem for Element {
     where
         Self: Sized,
     {
-        elem.body.push(Box::new(self));
+        elem.children.push(Box::new(self));
     }
 }
 
 impl<S: AsRef<str>> UpdateElem for S {
     fn update_elem(self, elem: &mut Element) {
-        elem.body.push(Box::new(self.as_ref().to_owned()));
+        elem.children.push(Box::new(self.as_ref().to_owned()));
     }
 }
 
@@ -56,7 +56,7 @@ impl ToHtml for Element {
             elem.set_attribute(&attr.name, &attr.value).unwrap();
         }
 
-        for el in self.body.iter() {
+        for el in self.children.iter() {
             let e = (*el).to_html(&doc);
             elem.append_child(e.as_ref().as_ref()).unwrap();
         }

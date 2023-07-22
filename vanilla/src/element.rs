@@ -3,5 +3,5 @@ use crate::traits::ToHtml;
 pub struct Element {
     pub name: String,
     pub attrs: Vec<Attr>,
-    pub body: Vec<Box<dyn ToHtml>>,
+    pub children: Vec<Box<dyn ToHtml>>,
 }

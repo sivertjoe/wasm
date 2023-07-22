@@ -40,7 +40,7 @@ macro_rules! define_elements {
                                 let mut elem = $crate::Element {
                                     name: stringify!($Tag).to_string(),
                                     attrs: Vec::new(),
-                                    body: Vec::new()
+                                    children: Vec::new()
                                 };
 
                                 $d(
