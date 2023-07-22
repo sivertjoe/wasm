@@ -7,9 +7,21 @@ pub trait UpdateElem {
         Self: Sized;
 }
 
+pub trait UpdateElemIterator {
+    fn update_elem(self, el: &mut Element);
+}
+
 pub trait ToHtml {
     fn to_html(&self, _doc: &Document) -> Box<dyn AsRef<web_sys::Node>> {
         unimplemented!()
+    }
+}
+
+impl<T: UpdateElem, I: IntoIterator<Item = T>> UpdateElemIterator for I {
+    fn update_elem(self, elem: &mut Element) {
+        for el in self {
+            el.update_elem(elem);
+        }
     }
 }
 

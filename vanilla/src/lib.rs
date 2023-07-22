@@ -13,7 +13,7 @@ use web_sys::window;
 pub use attr::Attr;
 pub use element::Element;
 pub use js::console_log;
-pub use traits::{ToHtml, UpdateElem};
+pub use traits::{ToHtml, UpdateElem, UpdateElemIterator};
 
 pub fn start_app<T: ToHtml>(elem: T) {
     set_panic_hook();
