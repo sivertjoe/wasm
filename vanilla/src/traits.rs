@@ -12,9 +12,7 @@ pub trait UpdateElemIterator {
 }
 
 pub trait ToHtml {
-    fn to_html(&self, _doc: &Document) -> Box<dyn AsRef<web_sys::Node>> {
-        unimplemented!()
-    }
+    fn to_html(&self, _doc: &Document) -> Box<dyn AsRef<web_sys::Node>>;
 }
 
 impl<T: UpdateElem, I: IntoIterator<Item = T>> UpdateElemIterator for I {

@@ -17,6 +17,7 @@ fn main() {
             },
             h1!["div1"]
         ],
-        h2!["Hello, World"]
+        h2!["Hello, World"],
+        vec![h2!["test"], h2!["sofie"], h2!["test"]],
     ])
 }
