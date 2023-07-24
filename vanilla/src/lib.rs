@@ -19,7 +19,7 @@ pub use traits::{UpdateElem, UpdateElemIterator};
 
 pub fn start_app<T: Component>(elem: T) {
     set_panic_hook();
-    websocket::spawn("ws://localhost:5000").unwrap();
+    // websocket::spawn("ws://localhost:5000").unwrap();
     let document = window()
         .and_then(|win| win.document())
         .expect("Could not access document");
