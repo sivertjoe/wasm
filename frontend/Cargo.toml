@@ -1,0 +1,8 @@
+[package]
+name = "frontend"
+version = "0.1.0"
+authors = ["Sivert Johansen <sivert-joh@hotmail.com>"]
+edition = "2021"
+
+[dependencies]
+vanilla = { path = "../vanilla" }
