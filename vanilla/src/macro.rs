@@ -1,3 +1,10 @@
+pub fn document() -> web_sys::Document {
+    let document = web_sys::window()
+        .and_then(|win| win.document())
+        .expect("Could not access document");
+    document
+}
+
 #[macro_export]
 macro_rules! attrs {
     ($($name:expr => $value:expr),* $(,)?) => {{
@@ -35,16 +42,10 @@ macro_rules! define_elements {
                     macro_rules! $Tag {
                         ( $d($d part:expr),* $d(,)? ) => {
                             {
-                                use $crate::UpdateElem;
-                                #[allow(unused_mut)]
-                                let mut elem = $crate::Element {
-                                    name: stringify!($Tag).to_string(),
-                                    attrs: Vec::new(),
-                                    children: Vec::new()
-                                };
+                                let elem = document().create_element(stringify!($Tag)).unwrap();
 
                                 $d(
-                                     $d part.update_elem(&mut elem);
+                                     $d part.update_elem(&elem);
                                 )*
 
                                 elem

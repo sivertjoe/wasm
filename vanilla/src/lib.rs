@@ -1,17 +1,16 @@
 #![recursion_limit = "1024"]
 
 mod attr;
-mod element;
 mod js;
 mod r#macro;
 pub mod traits;
 mod websocket;
 
 use console_error_panic_hook::set_once as set_panic_hook;
+pub use r#macro::document;
 use web_sys::window;
 
 pub use attr::Attr;
-pub use element::Element;
 pub use js::console_log;
 pub use traits::{ToHtml, UpdateElem, UpdateElemIterator};
 
