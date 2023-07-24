@@ -10,6 +10,19 @@ pub trait UpdateElemIterator {
     fn update_elem(self, el: &Element);
 }
 
+pub trait Component {
+    fn id() -> String {
+        String::new()
+    }
+    fn view(self) -> Box<dyn AsRef<web_sys::Node>>;
+}
+
+impl Component for Element {
+    fn view(self) -> Box<dyn AsRef<web_sys::Node>> {
+        Box::new(self)
+    }
+}
+
 impl<T: UpdateElem, I: IntoIterator<Item = T>> UpdateElemIterator for I {
     fn update_elem(self, elem: &Element) {
         for el in self {
