@@ -17,6 +17,10 @@ pub use js::console_log;
 pub use traits::Component;
 pub use traits::{UpdateElem, UpdateElemIterator};
 
+pub use gloo_timers::future::TimeoutFuture as Timeout;
+pub use uuid::Uuid;
+pub use wasm_bindgen_futures::spawn_local;
+
 pub fn start_app<T: Component>(elem: T) {
     set_panic_hook();
     // websocket::spawn("ws://localhost:5000").unwrap();
@@ -25,5 +29,5 @@ pub fn start_app<T: Component>(elem: T) {
         .expect("Could not access document");
     let body = document.body().expect("Could not access document.body");
 
-    body.append_child(elem.view().as_ref().as_ref()).unwrap();
+    body.append_child(elem.view().as_ref()).unwrap();
 }

@@ -11,15 +11,43 @@ pub trait UpdateElemIterator {
 }
 
 pub trait Component {
-    fn id() -> String {
-        String::new()
+    fn id(&self) -> String;
+
+    fn update(&self) {
+        let document = window()
+            .and_then(|win| win.document())
+            .expect("Could not access document");
+
+        let id = self.id();
+
+        let new = self.view();
+        let elem = document
+            .get_element_by_id(&id)
+            .expect("could not get element by id");
+        elem.replace_with_with_node_1(&new)
+            .expect("could not replace");
     }
-    fn view(self) -> Box<dyn AsRef<web_sys::Node>>;
+
+    fn view(&self) -> web_sys::Element;
 }
 
 impl Component for Element {
-    fn view(self) -> Box<dyn AsRef<web_sys::Node>> {
-        Box::new(self)
+    fn id(&self) -> String {
+        uuid::Uuid::new_v4().to_string()
+    }
+    fn view(&self) -> web_sys::Element {
+        self.clone()
+    }
+}
+
+use std::cell::RefCell;
+use std::rc::Rc;
+impl<C: Component> Component for Rc<RefCell<C>> {
+    fn id(&self) -> String {
+        self.borrow().id()
+    }
+    fn view(&self) -> web_sys::Element {
+        self.borrow().view()
     }
 }
 
