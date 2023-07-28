@@ -1,0 +1,10 @@
+[package]
+name = "hello-world"
+version = "0.1.0"
+authors = ["Sivert Johansen <sivert-joh@hotmail.com>"]
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0.176", features = ["derive"] }
+serde_json = "1.0.104"
+vanilla = { path = "../.." }
