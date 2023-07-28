@@ -10,6 +10,10 @@ pub trait UpdateElemIterator {
     fn update_elem(self, el: &Element);
 }
 
+pub trait UpdateElementEvent {
+    fn update_elem(self, el: &Element);
+}
+
 pub trait Component {
     fn id(&self) -> String;
 

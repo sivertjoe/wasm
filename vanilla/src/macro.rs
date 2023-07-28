@@ -59,5 +59,5 @@ macro_rules! define_elements {
 }
 
 define_elements! {
-    div, h1, h2
+    div, h1, h2, input, button
 }
